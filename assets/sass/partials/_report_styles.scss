@@ -1,0 +1,58 @@
+ .report {
+    @include font-size(1.4);
+ }
+ .report-title {
+    @include font-size(3.0);
+    margin-bottom: 30px;
+    .date-range {
+        color: $DARK_GREY;
+    }
+ }
+
+ table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    caption {
+        @include heading-font();
+        background-color: $BLACK;
+        color: $RED;
+        text-transform: uppercase;
+        padding: 15px 18px;
+        @include font-size(2.2);
+        font-weight: bold;
+    }
+}
+th, td {
+    padding: 0.5rem;
+    text-align: left;
+    border: 1px solid #CCC;
+    line-height: 1.5;
+}
+tbody tr:nth-child(odd) {
+    background: #eee;
+}
+th {
+    text-align: left;
+    text-transform: uppercase;
+}
+.col-message {
+    width: 500px;
+}
+.col-pubdate {
+    width: 100px;
+}
+.col-reach, .col-impressions {
+    text-align: right;
+    width: 100px;
+}
+th.col-reach, th.col-impressions {
+    text-align: center;
+}
+.col-counter {
+    text-align: right;
+    width: 50px;
+}
+td.important {
+    color: $RED;
+}

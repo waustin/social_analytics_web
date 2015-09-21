@@ -1,0 +1,32 @@
+{% load humanize %}
+<table>
+    <caption>{{table_name}}</caption>
+    <thead>
+        <tr>
+            <th></th>
+            <th class="col-message">
+                Message
+            </th>
+            <th class="col-pubdate">
+                Date Posted
+            </th class="col-reach">
+            <th>
+                Total Reach
+            </th>
+            <th class="col-impressions">
+                Total Impressions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for row in post_data %}
+        <tr>
+            <th class="col-counter">{{forloop.counter}}</th>
+            <td class="col-message">{{row.message}}</td>
+            <td class="col-pubdate">{{row.pubdate|date:"m/d/Y"}}</td>
+            <td class="col-reach important">{{ row.totalreach|intcomma }}</td>
+            <td class="col-impressions">{{ row.impressions|intcomma }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

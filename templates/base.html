@@ -1,0 +1,55 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,300,900|Roboto+Condensed:400italic,400,300,700' rel='stylesheet' type='text/css'/>
+        <meta charset="utf-8">
+        <title>{% block title %}{% endblock title %}Social Media Report Builder</title>
+
+        <meta http-equiv="X-UA-Compatible" content="chrome=IE7" />
+
+        <meta name="viewport" content="initial-scale=1.0, width=device-width"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+
+        <link rel="stylesheet" href="{% static 'css/print.css' %}" media="print"/>
+        <!--[if lt IE 8]><link rel="stylesheet" href="{% static 'css/ie.css' %}" type="text/css" media="screen, projection"><![endif]-->
+
+        <link rel="stylesheet" href="{% static 'css/screen.css' %}" media="screen, projection"/>
+
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+         <!--[if (gte IE 6)&(lte IE 8)]>
+                <script type="text/javascript" src="{% static 'js/selectivizr-min.js' %}"></script>
+                <script type="text/javascript" src="{% static 'js/respond.min.js' %}"></script>
+        <![endif]-->
+
+        <script src="{% static 'js/modernizr.custom.74326.js' %}"></script>
+
+        {% comment %}
+            Link site specific js and css here
+        {% endcomment %}
+        {% block extra_head %}{% endblock extra_head %}
+    </head>
+    <body>
+        <header class="main-header">
+            <h1>Social Media Report Generator</h1>
+        </header>
+
+        <nav class="primary-nav">
+            <ul>
+                <li><a href="{% url 'facebook_post_report' %}">Facebook Post Report</a></li>
+                <li><a href="">Facebook Page Report</a></li>
+            </ul>
+        </nav>
+        <main id="site-main" role="main">
+            <div class="main-content-wrapper {% block main_content_class %}{% endblock main_content_class %}">
+                {% block main_content %}{% endblock main_content %}
+            </div>
+        </main>
+        <footer class="main-footer">
+        </footer>
+    </body>
+</html>

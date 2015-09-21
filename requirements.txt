@@ -1,0 +1,14 @@
+Django
+Pillow
+coverage
+dj-database-url
+django-coverage
+django-debug-toolbar
+django-dotenv
+django-extensions
+django-localflavor
+django-nose
+factory-boy
+mock
+nose
+psycopg2

@@ -1,0 +1,9 @@
+{% extends "one_column_layout_base.html" %}
+
+{% block content %}
+    {% if name %}
+        Hello {{name}}
+    {% else %}
+        <p>Hello World</p>
+    {% endif %}
+{% endblock content %}

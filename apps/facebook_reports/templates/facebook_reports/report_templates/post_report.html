@@ -1,0 +1,14 @@
+{% extends "report_base.html" %}
+
+
+{% block content %}
+<div class="report">
+    <h1 class="report-title">{{client}} Facebook Post Report:
+        <span class="date-range">{{start_date|date:"n/j/Y"}} &mdash; {{end_date|date:"n/j/Y"}}</span>
+    </h1>
+
+    {% include "facebook_reports/report_templates/_post_ranking_table.inc.html" with post_data=top_posts table_name="Highest Performing Posts" %}
+    {% include "facebook_reports/report_templates/_post_ranking_table.inc.html" with post_data=bottom_posts table_name="Lowest Performing Posts" %}
+
+</div>
+{% endblock content %}

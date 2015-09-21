@@ -1,0 +1,3 @@
+	Django Application Template
+	A simple default template for creating django applications.
+	Adds default files for admin, managers, and urls.
