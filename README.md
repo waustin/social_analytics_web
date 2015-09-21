@@ -1,7 +1,6 @@
-CJRW Django Starter Template
+CJRW Social Analytics Package
 ===========================
-
-A Django 1.8+ starter project template for typical CJRW web sites.
+Social Analytics Dashboard/Exporter
 
 
 ### Features
@@ -22,9 +21,4 @@ A Django 1.8+ starter project template for typical CJRW web sites.
 * Create a .env file in root to specifiey the DATABASE_URL and DJANGO_SETTINGS_MODULE. _Note: .env files should not be checked into your git repo_
 
 
-### Bundled Applications
-* Pages - multi-level page application with abiliity to override page templates
 
-
-### Applications to be installed via pip
-* Text Block - installed as a src package from pip
