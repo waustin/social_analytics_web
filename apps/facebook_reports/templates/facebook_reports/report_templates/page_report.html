@@ -3,16 +3,20 @@
 
 {% block content %}
 <div class="report">
-    <h1 class="report-title">{{client}} Facebook Page Engagement Activity Report:
+    <h1 class="report-title">{{client}} Facebook Page Report:
         <span class="date-range">{{start_date|date:"n/j/Y"}} &mdash; {{end_date|date:"n/j/Y"}}</span>
     </h1>
-    <div id="engage-chart"></div>
+
+    <div class="chart-wrapper">
+        <h3 class="chart-title">Facebook Engagment</h3>
+        <div id="engage-chart"></div>
+    </div>
 
 
-    <h1 class="report-title">{{client}} Facebook Page Likes Report:
-        <span class="date-range">{{start_date|date:"n/j/Y"}} &mdash; {{end_date|date:"n/j/Y"}}</span>
-    </h1>
-    <div id="likes-chart"></div>
+    <div class="chart-wrappper">
+        <h3 class="chart-title">{{client}} Facebook Page Likes:</h3>
+        <div id="likes-chart"></div>
+    </div>
 
 </div>
 {% endblock content %}

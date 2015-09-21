@@ -56,3 +56,10 @@ th.col-reach, th.col-impressions {
 td.important {
     color: $RED;
 }
+
+.chart-wrapper {
+    margin-bottom: 40px;
+    .chart-title {
+        @include font-size(2.0);
+    }
+}
