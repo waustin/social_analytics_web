@@ -25,10 +25,10 @@
                 x: 'date',
                 xFormat: '%m/%d/%Y',
                 columns: [
-                    ['date'].concat({{chart_labels}}),
-                    {{reach}},
-                    {{impressions}},
-                    {{engaged}},
+                    ['date'].concat({{chart_labels|safe}}),
+                    {{reach|safe}},
+                    {{impressions|safe}},
+                    {{engaged_users|safe}},
                 ]
             },
             point: {
@@ -55,8 +55,8 @@
                 x: 'date',
                 xFormat: '%m/%d/%Y',
                 columns: [
-                    ['date'].concat({{chart_labels}}),
-                    {{likes}}
+                    ['date'].concat({{chart_labels|safe}}),
+                    {{likes|safe}}
                 ]
             },
             point: {
@@ -76,6 +76,7 @@
                 }
             }
         });
+
     </script>
 
  {% endblock extra_js %}

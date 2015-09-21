@@ -52,7 +52,7 @@ class FacebookPageReportView(View):
                           {'client': form.cleaned_data['client'],
                            'start_date': report_data['start_date'],
                            'end_date': report_data['end_date'],
-                           'chart_lables': report_data['chart_labels'],
+                           'chart_labels': report_data['chart_labels'],
                            'reach': report_data['reach'],
                            'impressions': report_data['impressions'],
                            'engaged_users': report_data['engaged_users'],
