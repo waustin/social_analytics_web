@@ -2,9 +2,12 @@
 
 .main-header {
     @extend %wrapper;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     border-bottom: 1px solid $MEDIUM_GREY;
+    h1 {
+        margin-bottom: 0;
+    }
 }
 .primary-nav {
     @extend %wrapper;
@@ -85,10 +88,11 @@
     @extend %wrapper;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-top: 1px solid $MEDIUM_GREY;
+    border-top: 1px solid $LIGHT_GREY;
     .copyright {
         @include font-size(1.1);
         margin-bottom: 0;
+        text-align: center;
     }
 }
 

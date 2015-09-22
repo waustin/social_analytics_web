@@ -4,6 +4,10 @@ label {
 	display: block;
 	margin-bottom: 7px;
 	@include heading-font();
+	font-weight: bold;
+	.asteriskField {
+		display: none;
+	}
 }
 input[type=text], input[type=email], input[type=password], textarea, select {
 	border: 1px solid $MEDIUM_GREY;
@@ -31,6 +35,8 @@ input[type=text], input[type=email], input[type=password], select {
 }
 .form-group .help-block {
 	font-style: italic;
+	color: $MEDIUM_GREY;
+	@include font-size(1.4);
 
 }
 .form-group.has-error {
@@ -51,4 +57,11 @@ button, input[type=submit], .button {
 }
 .hp-field {
 	display: none;
+}
+
+.report-gen-form-wrapper {
+	max-width: 700px;
+	.button {
+		max-width: 300px;
+	}
 }

@@ -6,8 +6,8 @@ from crispy_forms.layout import Layout, Div, Submit, Field
 
 
 class DataFileUploadForm(forms.Form):
-    client = forms.CharField(max_length=75)
-    data_file = forms.FileField()
+    client = forms.CharField(max_length=75, label="Client's Name")
+    data_file = forms.FileField(help_text='An Analytics Data. Must be in .CSV Format')
 
     def __init__(self, *args, **kwargs):
         super(DataFileUploadForm, self).__init__(*args, **kwargs)

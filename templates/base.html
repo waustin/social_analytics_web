@@ -40,8 +40,8 @@
 
         <nav class="primary-nav">
             <ul>
-                <li><a href="{% url 'facebook_post_report' %}">Facebook Post Report</a></li>
-                <li><a href="{% url 'facebook_page_report' %}">Facebook Page Report</a></li>
+                <li><a href="{% url 'facebook_post_report' %}">Facebook Post Level Report</a></li>
+                <li><a href="{% url 'facebook_page_report' %}">Facebook Page Level Report</a></li>
             </ul>
         </nav>
         <main id="site-main" role="main">
@@ -50,6 +50,7 @@
             </div>
         </main>
         <footer class="main-footer">
+            <p class="copyright">&copy;&nbsp;{% now "Y" %} CJRW</p>
         </footer>
         {% block extra_js %}{% endblock extra_js %}
     </body>
