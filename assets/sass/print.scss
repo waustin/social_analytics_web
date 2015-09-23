@@ -25,11 +25,18 @@ blockquote {margin:1.5em;padding:1em;font-style:italic;font-size:.9em;}
 a:link, a:visited {background:transparent;font-weight:700;text-decoration:underline;}
 //a:link:after, a:visited:after {content:" (" attr(href) ")";font-size:90%;}
 
-
 @import "compass";
-
+@import "partials/base";
 // Site specific Rules
 
+@page {
+    size: A4;
+    margin: 10mm;
+}
+html, body {
+    width: 210mm;
+    height: 297mm;
+}
 body {
 	margin: 10mm;
 }
@@ -43,9 +50,9 @@ ul, img, ol {
   page-break-inside: avoid;
 }
 // Try to prevent orphans
-p, h2, h3  { 
-	orphans: 3; 
-	widows: 3; 
+p, h2, h3  {
+	orphans: 3;
+	widows: 3;
 }
 ul li {
 	list-style-type: square;
@@ -57,6 +64,77 @@ img, object, video, media, embed, iframe {
 }
 
 
+/*** Custom Print Styles */
+.main-header, .primary-nav, .main-footer {
+    display: none;
+}
 
+ .report {
+    @include font-size(1.4);
+ }
+ .report-title {
+    @include font-size(3.0);
+    margin-bottom: 30px;
+    .date-range {
+        color: $DARK_GREY;
+    }
+ }
 
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    page-break-after: always;
+    caption {
+        @include heading-font();
+        background-color: $BLACK;
+        color: $RED;
+        text-transform: uppercase;
+        padding: 15px 18px;
+        @include font-size(2.2);
+        font-weight: bold;
+       // -webkit-print-color-adjust: exact;
+    }
+}
+th, td {
+    padding: 0.5rem;
+    text-align: left;
+    border: 1px solid #CCC;
+    line-height: 1.5;
+}
+tbody tr:nth-child(odd) {
+    background: #eee;
+}
+th {
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.col-message {
+    width: 500px;
+}
+.col-pubdate {
+    width: 100px;
+}
+.col-reach, .col-impressions {
+    text-align: right;
+    width: 100px;
+}
+th.col-reach, th.col-impressions {
+    text-align: center;
+}
+.col-counter {
+    text-align: right;
+    width: 50px;
+}
+td.important {
+    color: $RED;
+}
+
+.chart-wrapper {
+    margin-bottom: 40px;
+    .chart-title {
+        @include font-size(2.0);
+    }
+}
 

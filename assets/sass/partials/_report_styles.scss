@@ -13,6 +13,7 @@
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
+    page-break-inside: avoid;
     caption {
         @include heading-font();
         background-color: $BLACK;
@@ -22,6 +23,9 @@
         @include font-size(2.2);
         font-weight: bold;
     }
+}
+tr {
+    page-break-inside: avoid;
 }
 th, td {
     padding: 0.5rem;
