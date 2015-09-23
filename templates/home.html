@@ -1,8 +1,34 @@
 {% extends "one_column_layout_base.html" %}
 
 {% block content %}
+{% load humanize %}
     <h2>Protoype Social Media Report Generator.</h2>
     <p>
         Upload analytics data files from sites like Facebook, Twitter, Pinterest, and get formated reports for clients.
     </p>
+    <h3>Test Data</h3>
+    {% comment %}
+    <dl class="data-set-list">
+    {% for d in data %}
+        <dt>{{d.title}}
+            <span class="name">{{d.name}}</span>
+        </dt>
+        <dd>{{d.description}}</dd>
+    {% endfor %}
+    </dl>
+    {% endcomment %}
+    <h4>Total Reach</h4>
+    <table>
+        <thead>
+            <tr><th>Date</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+    {% for i in data.page_impressions_unique %}
+        <tr>
+        <td>{{i.date|date:"m/d/Y"}}</td><td>{{i.value|intcomma}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
 {% endblock content %}

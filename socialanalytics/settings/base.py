@@ -46,8 +46,10 @@ INSTALLED_APPS = (
     # 3rd Party
     'django_extensions',
     'crispy_forms',
+    'social.apps.django_app.default',
 
     'facebook_reports',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -133,6 +135,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect'
             ],
         },
     },
@@ -194,3 +198,15 @@ NOSE_ARGS = [
 
 # CRISPY FORMS
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+# AUTH STUFF
+LOGIN_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.Facebook2OAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('SOCIAL_AUTH_FACEBOOK_SECRET')
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'manage_pages', 'read_insights']

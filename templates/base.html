@@ -37,7 +37,16 @@
         <header class="main-header">
             <h1>Social Media Report Generator</h1>
         </header>
-
+        <nav class="auth-nav">
+            <ul>
+                {% if user and not user.is_anonymous %}
+                    <li class="welcome"><span>Welcome, {{user.get_full_name}}</span></li>
+                    <li><a href="{% url 'logout' %}">Sign Out</a></li>
+                {% else %}
+                    <li><a href="{% url 'social:begin' 'facebook' %}">Sign In with Facebook</a></li>
+                {% endif %}
+            </ul>
+        </nav>
         <nav class="primary-nav">
             <ul>
                 <li><a href="{% url 'facebook_post_report' %}">Facebook Post Level Report</a></li>
