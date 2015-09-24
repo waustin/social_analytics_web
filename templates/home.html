@@ -17,6 +17,8 @@
     {% endfor %}
     </dl>
     {% endcomment %}
+    <div id="engage-chart"></div>
+
     <h4>Total Reach</h4>
     <table>
         <thead>
@@ -32,3 +34,42 @@
     </table>
 
 {% endblock content %}
+
+ {% block extra_head %}
+    {% load staticfiles %}
+        <link href="{% static 'js/c3.css' %}" rel="stylesheet" type="text/css">
+        <script src="{% static 'js/c3.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+ {% endblock extra_head %}
+
+ {% block extra_js %}
+    <script>
+        var chart = c3.generate({
+            bindto: '#engage-chart',
+            data: {
+                x: 'date',
+                xFormat: '%m/%d/%Y',
+                columns: [
+                    {{chart_labels|safe}},
+                    {{data|safe}},
+                ]
+            },
+            point: {
+                show: false
+            },
+            axis: {
+                x: {
+                    type: 'timeseries',
+                    tick: {
+                        format: '%m/%d/%Y'
+                    }
+                },
+                y: {
+                    tick: {
+                        format: d3.format(',')
+                    }
+                }
+            }
+        });
+    </script>
+ {% endblock extra_js %}

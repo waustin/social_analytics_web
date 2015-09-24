@@ -5,8 +5,16 @@ from django.core.exceptions import ObjectDoesNotExist
 import facebook
 import datetime
 
+
 def parse_date_values(date_values):
-    return [{'date': datetime.datetime.strptime(i['end_time'][:10], '%Y-%m-%d'), 'value':i['value']} for i in date_values]
+    dates = []
+    values = []
+    for i in date_values:
+        dates.append(datetime.datetime.strptime(i['end_time'][:10], '%Y-%m-%d'))
+        #dates.append(i['end_time'][:10])
+        values.append(int(i['value']))
+
+    return (dates, values)
 
 
 def parse_fb_data(data):
@@ -17,12 +25,10 @@ def parse_fb_data(data):
     STORYTELLERS = 'page_storytellers'
     FANS = 'page_fans'
 
-    out_data = {}
     for i in data:
         if i['name'] == REACH_KEY:
-            out_data[REACH_KEY] = parse_date_values(i['values'])
-    print out_data
-    return out_data
+            tmp = parse_date_values(i['values'])
+    return tmp
 
 
 def home(request):
@@ -43,9 +49,19 @@ def home(request):
         access_token = social.extra_data['access_token']
         graph = facebook.GraphAPI(access_token=access_token)
         data = graph.get_object(page_id, period='days_28', since='2015/06/01', until='2015/09/1')
+
+
         data = parse_fb_data(data['data'])
+
+        chart_labels = [datetime.datetime.strftime(x, "%m/%d/%Y") for x in data[0]]
+        chart_labels.insert(0, 'date')
+
+        chart_data = data[1]
+        chart_data.insert(0, 'Reach')
+
     return render(request, 'home.html', {
-                  'data': data})
+                  'chart_labels': chart_labels,
+                  'data': chart_data})
 
 
 def logout(request):
