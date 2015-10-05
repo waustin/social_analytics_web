@@ -46,7 +46,7 @@ class FacebookPageReportView(View):
         form = DataFileUploadForm(self.request.POST, self.request.FILES)
 
         if form.is_valid():
-            builder = FacebookReportBuilder()
+            builder = FacebookCsvExportReportBuilder()
             report_data = builder.build_page_level_report(form.cleaned_data['data_file'])
             return render(request, self.report_template_name,
                           {'client': form.cleaned_data['client'],
