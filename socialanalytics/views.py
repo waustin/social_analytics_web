@@ -6,6 +6,9 @@ import facebook
 import datetime
 
 
+from facebook_reports.report_builder import FacebookGraphReportBuilder
+
+
 def parse_date_values(date_values):
     dates = []
     values = []
@@ -39,6 +42,10 @@ def home(request):
     page_id = 'me'
     page_id = 'Caboodles'
     page_id = '/Caboodles/insights/'
+
+    chart_labels = []
+    chart_data = []
+
     if user and not user.is_anonymous():
         try:
             social = user.social_auth.get(provider='facebook')
@@ -47,20 +54,27 @@ def home(request):
                   'data': data,
                   'token': access_token})
         access_token = social.extra_data['access_token']
-        graph = facebook.GraphAPI(access_token=access_token)
-        data = graph.get_object(page_id, period='days_28', since='2015/06/01', until='2015/09/1')
+
+        fb_builder = FacebookGraphReportBuilder(access_token)
+        data = fb_builder.page_level_report('Caboodles')
 
 
-        data = parse_fb_data(data['data'])
+        # graph = facebook.GraphAPI(access_token=access_token)
+        # data = graph.get_object(page_id, period='days_28', since='2015/06/01', until='2015/09/1')
 
-        chart_labels = [datetime.datetime.strftime(x, "%m/%d/%Y") for x in data[0]]
-        chart_labels.insert(0, 'date')
 
-        chart_data = data[1]
-        chart_data.insert(0, 'Reach')
+        # data = parse_fb_data(data['data'])
+
+        # chart_labels = [datetime.datetime.strftime(x, "%m/%d/%Y") for x in data[0]]
+        # chart_labels.insert(0, 'date')
+
+        # chart_data = data[1]
+        # chart_data.insert(0, 'Reach')
+
+
 
     return render(request, 'home.html', {
-                  'chart_labels': chart_labels,
+                  #'chart_labels': chart_labels,
                   'data': chart_data})
 
 

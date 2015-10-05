@@ -1,5 +1,6 @@
 from django.conf.urls import url
-from .views import FacebookPostReportView, FacebookPageReportView
+from django.views.generic import TemplateView
+from .views import FacebookPostReportView, FacebookPageReportView, FacebookGraphPageReport
 # Create your app urls here
 
 urlpatterns = [
@@ -10,5 +11,10 @@ urlpatterns = [
 
     url(r'^page-report/$',
         FacebookPageReportView.as_view(),
-        name='facebook_page_report')
+        name='facebook_page_report'),
+
+    # Graph API Reports
+    url(r'^graph/page-report/$',
+        FacebookGraphPageReport.as_view(),
+        name='facebook_graph_page_report'),
 ]

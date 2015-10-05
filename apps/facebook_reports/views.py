@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 from .forms import DataFileUploadForm
 
-from .report_builder import FacebookReportBuilder
+from .report_builder import FacebookCsvExportReportBuilder
 
 
 class FacebookPostReportView(View):
@@ -19,7 +19,7 @@ class FacebookPostReportView(View):
         form = DataFileUploadForm(self.request.POST, self.request.FILES)
 
         if form.is_valid():
-            builder = FacebookReportBuilder()
+            builder = FacebookCsvExportReportBuilder()
             report_data = builder.build_post_level_report(form.cleaned_data['data_file'])
 
             return render(request, self.report_template_name,
@@ -62,3 +62,6 @@ class FacebookPageReportView(View):
                           {'form': form})
 
 
+class FacebookGraphPageReport(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'facebook_reports/facebook_graph_page_report_form.html')

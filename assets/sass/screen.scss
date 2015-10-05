@@ -34,16 +34,22 @@
     }
 }
 .auth-nav {
-    @include nav-bar(lighten($DARK_GREY, 10%));
+    @include nav-bar($LIGHT_GREY);
+    border-bottom: 2px solid darken($LIGHT_GREY, 10%);
     text-align: right;
     @include font-size(1.4);
-    margin-bottom: 15px;
+    a {
+        color: darken($LINK_COLOR, 20%);
+    }
     .welcome {
         color: white;
         span {
             display: block;
             padding: 15px 18px;
         }
+    }
+    .lnk-home {
+        float: left;
     }
 }
 .primary-nav {

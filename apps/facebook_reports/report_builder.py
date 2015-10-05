@@ -1,9 +1,10 @@
 import csvkit
 import datetime
+import facebook
+from future.utils import viewitems
 
-
-class FacebookReportBuilder(object):
-
+class FacebookCsvExportReportBuilder(object):
+    """ Build Facebook Reports from  a csv export file """
     def build_post_level_report(self, f):
         PERMALINK = 1
         MESSAGE = 2
@@ -82,3 +83,34 @@ class FacebookReportBuilder(object):
         }
 
 
+class FacebookGraphReportBuilder(object):
+    def __init__(self, access_token):
+        self.graph = facebook.GraphAPI(access_token=access_token)
+
+    def parse_page_dataset(self, ds):
+        return ds
+
+    def page_level_report(self, page_id):
+        data_keys = {
+            'REACH': 'page_impressions_unique',
+            # 'ENGAGED': 'page_engaged_users',
+            # 'IMPRESSIONS': 'page_impressions',
+            # 'STORIES': 'page_stories',
+            # 'STORYTELLERS': 'page_storytellers',
+            # 'FANS': 'page_fans'
+            }
+
+        object_id = "/{0}/insights/".format(page_id)
+        page_data = self.graph.get_object(object_id,
+                                          period='days_28',
+                                          since='2015/06/01',
+                                          until='2015/09/01')
+        parsed_data = {}
+
+        for dataset in page_data['data']:
+            for (k, v) in viewitems(data_keys):
+                if dataset['name'] == v:
+                    parsed_data[k] = self.parse_page_dataset(dataset)
+
+        print parsed_data
+        return parsed_data

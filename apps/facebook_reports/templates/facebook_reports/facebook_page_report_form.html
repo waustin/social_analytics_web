@@ -1,4 +1,4 @@
-{% extends "one_column_layout_base.html" %}
+{% extends "facebook_reports/fb_report_base.html" %}
 
 {% block content %}
     {% load crispy_forms_tags %}
@@ -11,3 +11,8 @@
         {% crispy form %}
     </div>
 {% endblock content %}
+
+{% block sidebar %}
+    <h4 class="title">FB Graph API Report</h4>
+    <a href="{% url 'facebook_graph_page_report'%}">Go</a>
+{% endblock sidebar %}

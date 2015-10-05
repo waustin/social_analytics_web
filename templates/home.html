@@ -19,20 +19,6 @@
     {% endcomment %}
     <div id="engage-chart"></div>
 
-    <h4>Total Reach</h4>
-    <table>
-        <thead>
-            <tr><th>Date</th><th>Value</th></tr>
-        </thead>
-        <tbody>
-    {% for i in data.page_impressions_unique %}
-        <tr>
-        <td>{{i.date|date:"m/d/Y"}}</td><td>{{i.value|intcomma}}</td>
-        </tr>
-    {% endfor %}
-    </tbody>
-    </table>
-
 {% endblock content %}
 
  {% block extra_head %}

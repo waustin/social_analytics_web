@@ -3,6 +3,7 @@
 <html lang="en">
     <head>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,300,900|Roboto+Condensed:400italic,400,300,700' rel='stylesheet' type='text/css'/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
         <meta charset="utf-8">
         <title>{% block title %}{% endblock title %}Social Media Report Builder</title>
 
@@ -34,11 +35,9 @@
         {% block extra_head %}{% endblock extra_head %}
     </head>
     <body>
-        <header class="main-header">
-            <h1>Social Media Report Generator</h1>
-        </header>
         <nav class="auth-nav">
             <ul>
+                <li class="lnk-home"><a href="{% url 'home' %}">Home</a></li>
                 {% if user and not user.is_anonymous %}
                     <li class="welcome"><span>Welcome, {{user.get_full_name}}</span></li>
                     <li><a href="{% url 'logout' %}">Sign Out</a></li>
@@ -47,10 +46,13 @@
                 {% endif %}
             </ul>
         </nav>
+        <header class="main-header">
+            <h1>Social Media Report Generator</h1>
+        </header>
         <nav class="primary-nav">
             <ul>
-                <li><a href="{% url 'facebook_post_report' %}">Facebook Post Level Report</a></li>
                 <li><a href="{% url 'facebook_page_report' %}">Facebook Page Level Report</a></li>
+                <li><a href="{% url 'facebook_post_report' %}">Facebook Post Level Report</a></li>
             </ul>
         </nav>
         <main id="site-main" role="main">
