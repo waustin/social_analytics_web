@@ -93,7 +93,7 @@ class FacebookGraphReportBuilder(object):
     def parse_page_dataset(self, ds):
         return ds
 
-    def page_level_report(self, page_id):
+    def build_report(self, page_id, start_date, end_date):
         data_keys = {
             'REACH': 'page_impressions_unique',
             # 'ENGAGED': 'page_engaged_users',

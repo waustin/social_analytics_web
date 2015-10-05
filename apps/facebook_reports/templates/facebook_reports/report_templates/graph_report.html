@@ -1,0 +1,98 @@
+{% extends "report_base.html" %}
+
+
+{% block content %}
+
+
+<div class="report">
+    <h2 class="report-title">
+        {{client}} Facebook Report &ndash;
+        <span class="date-range">{{start_date|date:"n/j/Y"}} &mdash; {{end_date|date:"n/j/Y"}}</span>
+    </h2>
+
+    <div class="chart-wrapper">
+        <h3 class="chart-title">Facebook Engagment</h3>
+        <div id="engage-chart"></div>
+    </div>
+
+
+    <div class="chart-wrappper">
+        <h3 class="chart-title">Facebook Page Likes</h3>
+        <div id="likes-chart"></div>
+    </div>
+
+</div>
+{% endblock content %}
+
+ {% block extra_js %}
+ {% comment %}
+    <script>
+        var chart = c3.generate({
+            bindto: '#engage-chart',
+            data: {
+                x: 'date',
+                xFormat: '%m/%d/%Y',
+                columns: [
+                    ['date'].concat({{chart_labels|safe}}),
+                    {{reach|safe}},
+                    {{impressions|safe}},
+                    {{engaged_users|safe}},
+                ]
+            },
+            point: {
+                show: false
+            },
+            axis: {
+                x: {
+                    type: 'timeseries',
+                    tick: {
+                        format: '%m/%d/%Y'
+                    }
+                },
+                y: {
+                    tick: {
+                        format: d3.format(',')
+                    }
+                }
+            }
+        });
+
+        var chart = c3.generate({
+            bindto: '#likes-chart',
+            data: {
+                x: 'date',
+                xFormat: '%m/%d/%Y',
+                columns: [
+                    ['date'].concat({{chart_labels|safe}}),
+                    {{likes|safe}}
+                ]
+            },
+            point: {
+                show: false
+            },
+            axis: {
+                x: {
+                    type: 'timeseries',
+                    tick: {
+                        format: '%m/%d/%Y'
+                    }
+                },
+                y: {
+                    tick: {
+                        format: d3.format(',')
+                    }
+                }
+            }
+        });
+
+    </script>
+{% endcomment %}
+ {% endblock extra_js %}
+
+
+{% block extra_head %}
+    {% load staticfiles %}
+    <link href="{% static 'js/c3.css' %}" rel="stylesheet" type="text/css"/>
+    <script src="{% static 'js/c3.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+{% endblock extra_head %}
