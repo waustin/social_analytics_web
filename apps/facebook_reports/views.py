@@ -5,7 +5,6 @@ from .forms import DataFileUploadForm
 
 from .report_builder import FacebookCsvExportReportBuilder
 
-
 class FacebookPostReportView(View):
     template_name = 'facebook_reports/facebook_post_report_form.html'
     report_template_name = 'facebook_reports/report_templates/post_report.html'

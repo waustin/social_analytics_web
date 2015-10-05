@@ -3,6 +3,9 @@ import datetime
 import facebook
 from future.utils import viewitems
 
+from utils.data import safe_cast
+
+
 class FacebookCsvExportReportBuilder(object):
     """ Build Facebook Reports from  a csv export file """
     def build_post_level_report(self, f):
@@ -21,8 +24,8 @@ class FacebookCsvExportReportBuilder(object):
                 'permalink': r[PERMALINK],
                 'pubdate': datetime.datetime.strptime(r[POST_DATE], "%m/%d/%Y %H:%M:%S %p"),
                 'message': r[MESSAGE],
-                'totalreach': int(r[TOTAL_REACH]),
-                'impressions': int(r[IMPRESSIONS])})
+                'totalreach': safe_cast(r[TOTAL_REACH], int, 0),
+                'impressions': safe_cast(r[IMPRESSIONS], int, 0)})
 
         start_date = min(post_data, key=lambda i: i['pubdate'])['pubdate']
         end_date = max(post_data, key=lambda i: i['pubdate'])['pubdate']
@@ -52,10 +55,10 @@ class FacebookCsvExportReportBuilder(object):
         for idx, r in enumerate(csv):
             data.append({
                 'date': datetime.datetime.strptime(r[DATE], "%Y-%m-%d"),
-                'likes': int(r[TOTAL_LIKES]),
-                'engaged_users': int(r[ENGAGED_USERS]),
-                'reach': int(r[TOTAL_REACH]),
-                'impressions': int(r[IMPRESSIONS])
+                'likes': safe_cast(r[TOTAL_LIKES], int, 0),
+                'engaged_users': safe_cast(r[ENGAGED_USERS], int, 0),
+                'reach': safe_cast(r[TOTAL_REACH], int, 0),
+                'impressions': safe_cast(r[IMPRESSIONS], int, 0)
             })
 
         start_date = min(data, key=lambda i: i['date'])['date']
