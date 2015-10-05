@@ -1,1 +1,6 @@
 {% extends "two_column_layout_base.html" %}
+
+{% block sidebar %}
+    <h4 class="title">FB Graph API Report</h4>
+    <a href="{% url 'facebook_graph_api_report'%}">Go</a>
+{% endblock sidebar %}

@@ -1,10 +1,12 @@
 {% extends "facebook_reports/fb_report_base.html" %}
 
+
+
 {% block content %}
     {% load crispy_forms_tags %}
-    <h1>Facebook Page Level Analytcis Report</h1>
+    <h1>Facebook Graph API Report</h1>
     <p>
-        Enter a client's name and the Facebook Page Level Data File <strong>(.csv)</strong> into the form below.
+        Enter the URL for a client's FB page, <em>You must have access to it</em>, and a date range below.
     </p>
 
     <div class="report-gen-form-wrapper">

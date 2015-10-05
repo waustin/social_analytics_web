@@ -1,7 +1,7 @@
 from django.views.generic import View
 from django.shortcuts import render
 
-from .forms import DataFileUploadForm
+from .forms import DataFileUploadForm, GraphAPIForm
 
 from .report_builder import FacebookCsvExportReportBuilder
 
@@ -61,6 +61,12 @@ class FacebookPageReportView(View):
                           {'form': form})
 
 
-class FacebookGraphPageReport(View):
+class FacebookGraphAPIReport(View):
+    template_name = 'facebook_reports/facebook_graph_api_report_form.html'
+    report_template_name = 'facebook_reports/report_templates/page_report.html'
+
     def get(self, request, *args, **kwargs):
+        form = GraphAPIForm()
+        return render(request, self.template_name,
+                      {'form': form})
         return render(request, 'facebook_reports/facebook_graph_page_report_form.html')

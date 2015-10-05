@@ -9,7 +9,9 @@ label {
 		display: none;
 	}
 }
-input[type=text], input[type=email], input[type=password], textarea, select {
+input[type=text], input[type=email],
+input[type=password], input[type=url],
+textarea, select {
 	border: 1px solid $MEDIUM_GREY;
 	background-color: white;
 	@include font-size(1.6);
@@ -27,11 +29,25 @@ input[type=text], input[type=email], input[type=password], textarea, select {
 	}
 }
 
-input[type=text], input[type=email], input[type=password], select {
+input[type=text], input[type=email],
+input[type=password], input[type=url],
+select {
 	height: 40px;
 }
 .control-group, .form-group {
 	margin-bottom: 30px;
+}
+
+.date-range {
+	@include clearfix();
+	.form-group {
+		float: left;
+		width: 50%;
+		padding-right: 20px;
+		&:last-child {
+			padding-right: 0
+		}
+	}
 }
 .form-group .help-block {
 	font-style: italic;

@@ -1,4 +1,6 @@
 from django import forms
+import datetime
+
 # Add your forms here
 
 from crispy_forms.helper import FormHelper
@@ -15,5 +17,22 @@ class DataFileUploadForm(forms.Form):
         self.helper.layout = Layout(
             Field('client'),
             Field('data_file'),
-             Submit('submit', 'Submit', css_class='button'),
+            Submit('submit', 'Submit', css_class='button'),
+        )
+
+
+class GraphAPIForm(forms.Form):
+    page_url = forms.URLField(help_text='URL for the FB Page.')
+    start_date = forms.DateField(initial=datetime.datetime.now)
+    end_date = forms.DateField(initial=datetime.datetime.now)
+
+    def __init__(self, *args, **kwargs):
+        super(GraphAPIForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Field('page_url'),
+            Div(Field('start_date'),
+                Field('end_date'),
+                css_class='date-range'),
+            Submit('submit', 'Submit', css_class='button')
         )
