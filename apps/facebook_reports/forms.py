@@ -23,8 +23,10 @@ class DataFileUploadForm(forms.Form):
 
 class GraphAPIForm(forms.Form):
     page_url = forms.URLField(help_text='URL for the FB Page.')
-    start_date = forms.DateField(initial=datetime.datetime.now)
-    end_date = forms.DateField(initial=datetime.datetime.now)
+    start_date = forms.DateField(initial=datetime.datetime.now,
+                                 widget=forms.DateInput(format='%m/%d/%Y'))
+    end_date = forms.DateField(initial=datetime.datetime.now,
+                               widget=forms.DateInput(format='%m/%d/%Y'))
 
     def __init__(self, *args, **kwargs):
         super(GraphAPIForm, self).__init__(*args, **kwargs)
