@@ -22,7 +22,7 @@
     {% for row in post_data %}
         <tr>
             <th class="col-counter">{{forloop.counter}}</th>
-            <td class="col-message">{{row.message}}</td>
+            <td class="col-message">{{row.message|safe}}</td>
             <td class="col-pubdate">{{row.pubdate|date:"m/d/Y"}}</td>
             <td class="col-reach important">{{ row.totalreach|intcomma }}</td>
             <td class="col-impressions">{{ row.impressions|intcomma }}</td>

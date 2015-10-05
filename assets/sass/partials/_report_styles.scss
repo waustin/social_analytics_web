@@ -41,7 +41,9 @@ th {
     text-transform: uppercase;
 }
 .col-message {
-    width: 500px;
+    width: 400px;
+    max-width: 400px!important;
+    overflow: hidden;
 }
 .col-pubdate {
     width: 100px;
