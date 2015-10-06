@@ -35,28 +35,25 @@ def parse_fb_data(data):
 
 
 def home(request):
-    data = xrange(10)
+    # data = xrange(10)
 
-    access_token = ''
-    user = request.user
-    page_id = 'me'
-    page_id = 'Caboodles'
-    page_id = '/Caboodles/insights/'
+    # access_token = ''
+    # user = request.user
 
-    chart_labels = []
-    chart_data = []
+    # chart_labels = []
+    # chart_data = []
 
-    if user and not user.is_anonymous():
-        try:
-            social = user.social_auth.get(provider='facebook')
-        except ObjectDoesNotExist:
-            return render(request, 'home.html', {
-                  'data': data,
-                  'token': access_token})
-        access_token = social.extra_data['access_token']
+    # if user and not user.is_anonymous():
+    #     try:
+    #         social = user.social_auth.get(provider='facebook')
+    #     except ObjectDoesNotExist:
+    #         return render(request, 'home.html', {
+    #               'data': data,
+    #               'token': access_token})
+    #     access_token = social.extra_data['access_token']
 
-        fb_builder = FacebookGraphReportBuilder(access_token)
-        data = fb_builder.page_level_report('Caboodles')
+    #     fb_builder = FacebookGraphReportBuilder(access_token)
+
 
 
         # graph = facebook.GraphAPI(access_token=access_token)
@@ -73,9 +70,7 @@ def home(request):
 
 
 
-    return render(request, 'home.html', {
-                  #'chart_labels': chart_labels,
-                  'data': chart_data})
+    return render(request, 'home.html')
 
 
 def logout(request):
