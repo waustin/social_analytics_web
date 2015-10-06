@@ -106,8 +106,8 @@ class FacebookGraphReportBuilder(object):
         object_id = "/{0}/insights/".format(page_id)
         page_data = self.graph.get_object(object_id,
                                           period='days_28',
-                                          since='2015/06/01',
-                                          until='2015/09/01')
+                                          since=start_date,
+                                          until=end_date)
         parsed_data = {}
 
         for dataset in page_data['data']:

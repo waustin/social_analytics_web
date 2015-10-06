@@ -1,3 +1,4 @@
+import datetime
 from django.views.generic import View
 from django.shortcuts import render
 from urlparse import urlparse
@@ -83,7 +84,8 @@ class FacebookGraphAPIReport(View):
             page_id = page_url_path.strip('/')
 
             start_date = form.cleaned_data['start_date']
-            end_date = form.cleaned_data['end_date']
+            # Add one day to the end date because it is inclusive to FB
+            end_date = form.cleaned_data['end_date'] + datetime.timedelta(days=1)
 
             report_data = builder.build_report(page_id=page_id,
                                                start_date=start_date,
