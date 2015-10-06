@@ -8,10 +8,11 @@
         <span class="date-range">{{start_date|date:"n/j/Y"}} &mdash; {{end_date|date:"n/j/Y"}}</span>
     </h2>
 
+     {% for d in chart_data %}
     <div class="chart-wrapper">
-        <h3 class="chart-title">Facebook Engagment</h3>
-        <div id="engage-chart"></div>
+        <div id="chart-{{forloop.counter}}"></div>
     </div>
+    {% endfor %}
 
 </div>
 {% endblock content %}
@@ -34,17 +35,16 @@
                 }
             };
 
+
+        {% for d in chart_data %}
         var chart = c3.generate({
-            bindto: '#engage-chart',
+            bindto: '#chart-{{forloop.counter}}',
             data: {
                 x: 'date',
                 xFormat: '%m/%d/%Y',
                 columns: [
                     chart_labels,
-                    {{reach|safe}},
-                    {{impressions|safe}},
-                    {{stories|safe}},
-                    {{engaged|safe}}
+                    {{d|safe}}
                 ]
             },
             point: {
@@ -52,6 +52,7 @@
             },
             axis: chart_axis_format
         });
+        {% endfor %}
     </script>
  {% endblock extra_js %}
 

@@ -113,11 +113,9 @@ class FacebookGraphAPIReport(View):
             stories = list(stories)
             stories.insert(0, 'Stories')
 
-            #storytellers = list(storytellers)
-            #storytellers.insert(0, 'Storytellers')
-
-            #fans = list(fans)
-            #fans.insert(0, 'Fans')
+            data = [
+                reach, engaged, impressions, stories
+            ]
 
             return render(request, self.report_template_name,
                           {'client': page_id,
@@ -128,7 +126,8 @@ class FacebookGraphAPIReport(View):
                            'reach': reach,
                            'engaged': engaged,
                            'impressions': impressions,
-                           'stories': stories})
+                           'stories': stories,
+                           'chart_data': data})
                            #'storytellers': storytellers,
                            #'fans': fans})
         else:
