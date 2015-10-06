@@ -1,6 +1,6 @@
-CJRW Social Analytics Package
+Social Analytics Reports
 ===========================
-Social Analytics Dashboard/Exporter
+Social Analytics Report Generator
 
 
 ### Features
@@ -18,7 +18,7 @@ Social Analytics Dashboard/Exporter
 * A a basic fabric file to help deployment to WebFaction
 * A requirements template of basic apps to install
 
-* Create a .env file in root to specifiey the DATABASE_URL and DJANGO_SETTINGS_MODULE. _Note: .env files should not be checked into your git repo_
+* Create a .env file in root to specifiey the DATABASE_URL and DJANGO_SETTINGS_MODULE, SECRET_KEY, etc _Note: .env files should not be checked into your git repo_
 
 
 

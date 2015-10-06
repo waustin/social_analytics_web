@@ -20,12 +20,13 @@
         <h3 class="chart-title">Facebook Page Likes</h3>
         <div id="likes-chart"></div>
     </div>
+    <hr/>
+    {{data}}
 
 </div>
 {% endblock content %}
 
  {% block extra_js %}
- {% comment %}
     <script>
         var chart = c3.generate({
             bindto: '#engage-chart',
@@ -37,6 +38,9 @@
                     {{reach|safe}},
                     {{impressions|safe}},
                     {{engaged_users|safe}},
+                    {% for d in data %}
+                        {{}}
+                    {% endfor %}
                 ]
             },
             point: {
@@ -86,7 +90,6 @@
         });
 
     </script>
-{% endcomment %}
  {% endblock extra_js %}
 
 

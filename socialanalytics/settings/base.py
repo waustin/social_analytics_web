@@ -24,7 +24,7 @@ MANAGERS = ADMINS
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%klt(66#jw)u8vbw^ib_^1@b#_xsm#g_7pex$s+$o$5wb9-ovd'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False

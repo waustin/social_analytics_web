@@ -96,11 +96,11 @@ class FacebookGraphReportBuilder(object):
     def build_report(self, page_id, start_date, end_date):
         data_keys = {
             'REACH': 'page_impressions_unique',
-            # 'ENGAGED': 'page_engaged_users',
-            # 'IMPRESSIONS': 'page_impressions',
-            # 'STORIES': 'page_stories',
-            # 'STORYTELLERS': 'page_storytellers',
-            # 'FANS': 'page_fans'
+            'ENGAGED': 'page_engaged_users',
+            'IMPRESSIONS': 'page_impressions',
+            'STORIES': 'page_stories',
+            'STORYTELLERS': 'page_storytellers',
+            'FANS': 'page_fans'
             }
 
         object_id = "/{0}/insights/".format(page_id)
@@ -115,5 +115,4 @@ class FacebookGraphReportBuilder(object):
                 if dataset['name'] == v:
                     parsed_data[k] = self.parse_page_dataset(dataset)
 
-        print parsed_data
         return parsed_data
