@@ -22,6 +22,12 @@
     </div>
     <hr/>
     {{data}}
+    <hr/>
+    {{data.REACH}}
+    <hr/>
+    {% for d in data.REACH %}
+        [{{d}}]
+    {% endfor %}
 
 </div>
 {% endblock content %}

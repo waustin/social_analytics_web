@@ -91,7 +91,8 @@ class FacebookGraphReportBuilder(object):
         self.graph = facebook.GraphAPI(access_token=access_token)
 
     def parse_page_dataset(self, ds):
-        return ds
+        data = [(datetime.datetime.strptime(d['end_time'][:10],  "%Y-%m-%d"), safe_cast(d['value'], int, 0)) for d in ds['values']]
+        return data
 
     def build_report(self, page_id, start_date, end_date):
         data_keys = {
