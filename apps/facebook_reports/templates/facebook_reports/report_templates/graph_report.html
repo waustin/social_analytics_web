@@ -13,25 +13,34 @@
         <div id="engage-chart"></div>
     </div>
 
-
-    <div class="chart-wrappper">
-        <h3 class="chart-title">Facebook Page Likes</h3>
-        <div id="likes-chart"></div>
-    </div>
-
-
 </div>
 {% endblock content %}
 
  {% block extra_js %}
     <script>
+        var chart_labels = {{chart_dates|safe}};
+
+        var chart_axis_format = {
+                x: {
+                    type: 'timeseries',
+                    tick: {
+                        format: '%m/%d/%Y'
+                    }
+                },
+                y: {
+                    tick: {
+                        format: d3.format(',')
+                    }
+                }
+            };
+
         var chart = c3.generate({
             bindto: '#engage-chart',
             data: {
                 x: 'date',
                 xFormat: '%m/%d/%Y',
                 columns: [
-                    {{chart_dates|safe}},
+                    chart_labels,
                     {{reach|safe}},
                     {{impressions|safe}},
                     {{stories|safe}},
@@ -41,49 +50,8 @@
             point: {
                 show: false
             },
-            axis: {
-                x: {
-                    type: 'timeseries',
-                    tick: {
-                        format: '%m/%d/%Y'
-                    }
-                },
-                y: {
-                    tick: {
-                        format: d3.format(',')
-                    }
-                }
-            }
+            axis: chart_axis_format
         });
-/*
-        var chart = c3.generate({
-            bindto: '#likes-chart',
-            data: {
-                x: 'date',
-                xFormat: '%m/%d/%Y',
-                columns: [
-                    ['date'].concat({{chart_labels|safe}}),
-                    {{likes|safe}}
-                ]
-            },
-            point: {
-                show: false
-            },
-            axis: {
-                x: {
-                    type: 'timeseries',
-                    tick: {
-                        format: '%m/%d/%Y'
-                    }
-                },
-                y: {
-                    tick: {
-                        format: d3.format(',')
-                    }
-                }
-            }
-        });
-*/
     </script>
  {% endblock extra_js %}
 
