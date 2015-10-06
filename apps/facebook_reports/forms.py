@@ -32,6 +32,7 @@ class GraphAPIForm(forms.Form):
 
         self.fields['start_date'].initial = datetime.date.today()
         self.fields['end_date'].initial = datetime.date.today()
+
         self.helper = FormHelper()
         self.helper.layout = Layout(
             Field('page_url'),
