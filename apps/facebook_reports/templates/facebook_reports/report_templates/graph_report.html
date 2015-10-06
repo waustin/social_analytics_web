@@ -21,13 +21,13 @@
         <div id="likes-chart"></div>
     </div>
     <hr/>
-    {{data}}
+    {{full_data}}
     <hr/>
-    {{data.REACH}}
+    {{full_data.REACH}}
     <hr/>
-    {% for d in data.REACH %}
-        [{{d}}]
-    {% endfor %}
+    {{chart_dates}}
+    <br/>
+    {{chart_data}}
 
 </div>
 {% endblock content %}
@@ -40,13 +40,8 @@
                 x: 'date',
                 xFormat: '%m/%d/%Y',
                 columns: [
-                    ['date'].concat({{chart_labels|safe}}),
-                    {{reach|safe}},
-                    {{impressions|safe}},
-                    {{engaged_users|safe}},
-                    {% for d in data %}
-                        {{d}}
-                    {% endfor %}
+                    {{chart_dates|safe}},
+                    {{chart_data|safe}}
                 ]
             },
             point: {
@@ -66,7 +61,7 @@
                 }
             }
         });
-
+/*
         var chart = c3.generate({
             bindto: '#likes-chart',
             data: {
@@ -94,7 +89,7 @@
                 }
             }
         });
-
+*/
     </script>
  {% endblock extra_js %}
 

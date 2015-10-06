@@ -90,11 +90,20 @@ class FacebookGraphAPIReport(View):
             report_data = builder.build_report(page_id=page_id,
                                                start_date=start_date,
                                                end_date=end_date)
+            dates, data = zip(*report_data['REACH'])
+            dates = [datetime.datetime.strftime(d, "%m/%d/%Y") for d in dates]
+            dates.insert(0, 'date')
+
+            data = list(data)
+            data.insert(0, 'Reach')
+
             return render(request, self.report_template_name,
                           {'client': page_id,
                            'start_date': start_date,
                            'end_date': end_date,
-                           'data': report_data,
+                           'full_data': report_data,
+                           'chart_dates': dates,
+                           'chart_data': data,
                            'token': access_token})
         else:
             return render(request, self.template_name,
