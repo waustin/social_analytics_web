@@ -2,8 +2,6 @@
 
 
 {% block content %}
-
-
 <div class="report">
     <h2 class="report-title">
         {{client}} Facebook Report &ndash;
@@ -41,7 +39,10 @@
                 xFormat: '%m/%d/%Y',
                 columns: [
                     {{chart_dates|safe}},
-                    {{chart_data|safe}}
+                    {{reach|safe}},
+                    {{impressions|safe}},
+                    {{stories|safe}},
+                    {{engaged|safe}}
                 ]
             },
             point: {

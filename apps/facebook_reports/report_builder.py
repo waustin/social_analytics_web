@@ -91,7 +91,10 @@ class FacebookGraphReportBuilder(object):
         self.graph = facebook.GraphAPI(access_token=access_token)
 
     def parse_page_dataset(self, ds):
-        data = [(datetime.datetime.strptime(d['end_time'][:10],  "%Y-%m-%d"), safe_cast(d['value'], int, 0)) for d in ds['values']]
+        def _convert_date(d):
+            return datetime.datetime.strftime(datetime.datetime.strptime(d[:10], "%Y-%m-%d"), "%m/%d/%Y")
+
+        data = [(_convert_date(d['end_time']), safe_cast(d['value'], int, 0)) for d in ds['values']]
         return data
 
     def build_report(self, page_id, start_date, end_date):
@@ -116,4 +119,5 @@ class FacebookGraphReportBuilder(object):
                 if dataset['name'] == v:
                     parsed_data[k] = self.parse_page_dataset(dataset)
 
+        print parsed_data
         return parsed_data

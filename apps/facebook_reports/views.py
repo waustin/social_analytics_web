@@ -90,21 +90,47 @@ class FacebookGraphAPIReport(View):
             report_data = builder.build_report(page_id=page_id,
                                                start_date=start_date,
                                                end_date=end_date)
-            dates, data = zip(*report_data['REACH'])
-            dates = [datetime.datetime.strftime(d, "%m/%d/%Y") for d in dates]
-            dates.insert(0, 'date')
 
-            data = list(data)
-            data.insert(0, 'Reach')
+            chart_dates, reach = zip(*report_data['REACH'])
+            _, engaged = zip(*report_data['ENGAGED'])
+            _, impressions = zip(*report_data['IMPRESSIONS'])
+            _, stories = zip(*report_data['STORIES'])
+            #_, storytellers = zip(*report_data['STORYTELLERS'])
+            #_, fans = zip(*report_data['FANS'])
+
+            chart_dates = list(chart_dates)
+            chart_dates.insert(0, 'date')
+
+            reach = list(reach)
+            reach.insert(0, 'Reach')
+
+            engaged = list(engaged)
+            engaged.insert(0, 'Engaged')
+
+            impressions = list(impressions)
+            impressions.insert(0, 'Impressions')
+
+            stories = list(stories)
+            stories.insert(0, 'Stories')
+
+            #storytellers = list(storytellers)
+            #storytellers.insert(0, 'Storytellers')
+
+            #fans = list(fans)
+            #fans.insert(0, 'Fans')
 
             return render(request, self.report_template_name,
                           {'client': page_id,
                            'start_date': start_date,
                            'end_date': end_date,
                            'full_data': report_data,
-                           'chart_dates': dates,
-                           'chart_data': data,
-                           'token': access_token})
+                           'chart_dates': chart_dates,
+                           'reach': reach,
+                           'engaged': engaged,
+                           'impressions': impressions,
+                           'stories': stories})
+                           #'storytellers': storytellers,
+                           #'fans': fans})
         else:
             return render(request, self.template_name,
                           {'form': form})
