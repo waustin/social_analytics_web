@@ -76,7 +76,6 @@ class FacebookGraphAPIReport(View):
     def post(self, request, *args, **kwargs):
         form = GraphAPIForm(self.request.POST)
         if form.is_valid():
-
             access_token = self.request.user.social_auth.get(provider='facebook').extra_data['access_token']
             builder = FacebookGraphReportBuilder(access_token)
 
@@ -90,46 +89,24 @@ class FacebookGraphAPIReport(View):
             report_data = builder.build_report(page_id=page_id,
                                                start_date=start_date,
                                                end_date=end_date)
+            dates = list()
+            all_data = list()
+            for i in report_data:
+                dates, data = zip(*report_data[i])
+                dates = list(dates)
+                data = list(data)
+                data.insert(0, i)
+                all_data.append(data)
 
-            chart_dates, reach = zip(*report_data['REACH'])
-            _, engaged = zip(*report_data['ENGAGED'])
-            _, impressions = zip(*report_data['IMPRESSIONS'])
-            _, stories = zip(*report_data['STORIES'])
-            #_, storytellers = zip(*report_data['STORYTELLERS'])
-            #_, fans = zip(*report_data['FANS'])
-
-            chart_dates = list(chart_dates)
-            chart_dates.insert(0, 'date')
-
-            reach = list(reach)
-            reach.insert(0, 'Reach')
-
-            engaged = list(engaged)
-            engaged.insert(0, 'Engaged')
-
-            impressions = list(impressions)
-            impressions.insert(0, 'Impressions')
-
-            stories = list(stories)
-            stories.insert(0, 'Stories')
-
-            data = [
-                reach, engaged, impressions, stories
-            ]
+            dates.insert(0, 'date')
 
             return render(request, self.report_template_name,
                           {'client': page_id,
                            'start_date': start_date,
                            'end_date': end_date,
                            'full_data': report_data,
-                           'chart_dates': chart_dates,
-                           'reach': reach,
-                           'engaged': engaged,
-                           'impressions': impressions,
-                           'stories': stories,
-                           'chart_data': data})
-                           #'storytellers': storytellers,
-                           #'fans': fans})
+                           'chart_dates': dates,
+                           'chart_data': all_data})
         else:
             return render(request, self.template_name,
                           {'form': form})
